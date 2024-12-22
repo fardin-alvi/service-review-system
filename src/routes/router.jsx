@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import Privateroute from "./Privateroute";
 import AddService from "../pages/AddService";
 import Services from "../pages/Services";
+import ServiceDetails from "../components/ServiceDetails";
 
 const router = createBrowserRouter([
     {
@@ -14,26 +15,32 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element:<Home/>
+                element: <Home />
 
             },
             {
                 path: 'login',
-                element:<Login/>
+                element: <Login />
             },
             {
                 path: 'register',
-                element:<Register/>
+                element: <Register />
             },
             {
                 path: 'addservice',
                 element: <Privateroute>
-                    <AddService/>
+                    <AddService />
                 </Privateroute>
             },
             {
                 path: '/service',
-                element:<Services/>
+                element: <Services />
+            },
+            {
+                path: '/servicedetails/:id',
+                element: <ServiceDetails />,
+                loader: ({ params }) => fetch(`http://localhost:6500/services/${params.id}`)
+                
             }
         ]
     }
