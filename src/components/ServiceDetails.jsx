@@ -15,7 +15,7 @@ import ReviewCard from './ReviewCard';
 const ServiceDetails = () => {
     const { user } = useAuth();
     const service = useLoaderData();
-    const { title, serviceImage, company, website, description, price, date, _id } = service;
+    const { title, serviceImage, company, website, description, price, date, _id,reviewCount } = service;
     const [rating, setRating] = useState(0);
     const [reviews,setReviews] = useState([])
 
@@ -90,7 +90,7 @@ const ServiceDetails = () => {
                         </div>
                     </div>
                 </div>
-                <p className='text-2xl font-semibold text-left mt-3'>Reviews</p>
+                <p className='text-2xl font-semibold text-left mt-3'>Reviews: <span className='bg-purple-200 text-base px-3 rounded-md'>{reviewCount}</span></p>
                 <div className='grid grid-cols-1 gap-y-2 my-3 items-start'>
                     {
                         reviews?.map(review=><ReviewCard key={review._id} review={review}></ReviewCard>)
