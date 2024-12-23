@@ -20,6 +20,8 @@ const Navbar = () => {
         {
             user && <>
                 <NavLink to='/addservice' className='border border-1 rounded-lg text-black md:text-white px-3 py-1 text-lg'>Add Service</NavLink>
+                <NavLink to='/myservice' className='border border-1 rounded-lg text-black md:text-white px-3 py-1 text-lg'>My Service</NavLink>
+                <NavLink to='/myreview' className='border border-1 rounded-lg text-black md:text-white px-3 py-1 text-lg'>My Review</NavLink>
             </>
         }
     </>

@@ -22,6 +22,7 @@ const AddService = () => {
         const price = form.price.value
         const date = form.date.value
         const userEmail = user.email
+        const reviewCount = 0
 
         const services = { title, serviceImage, company, website, category, description, price, date, userEmail, reviewCount }
 
