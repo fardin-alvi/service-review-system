@@ -64,7 +64,7 @@ const Navbar = () => {
                 <a className="text-xl flex items-center gap-1 "><FaServicestack className='size-7' /><span className='pt-2'><span className='text-teal-700' >Deck</span>Serve</span></a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 space-x-2">
+                <ul className="menu menu-horizontal px-1 space-x-2 ">
                     {links}
                 </ul>
             </div>

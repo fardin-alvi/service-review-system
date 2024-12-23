@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { FaBuildingColumns } from "react-icons/fa6";
 import { AiFillDribbbleCircle } from 'react-icons/ai';
 import { IoMdPricetags } from 'react-icons/io';
@@ -20,6 +20,7 @@ const ServiceDetails = () => {
     const [reviews,setReviews] = useState([])
 
     const handleAddReview = (e) => {
+        const navigate = useNavigate()
         e.preventDefault()
         const form = e.target 
         const review = form.review.value 
@@ -29,7 +30,7 @@ const ServiceDetails = () => {
             text: review,
             rating:rating,
             postedDate: new Date(date),
-            user: { name: user.displayName, photo: user.photoURL },
+            user: { name: user.displayName, userEmail:user.email , photo: user.photoURL },
         };
 
         axios.post('http://localhost:6500/addreview', reviews)
@@ -37,6 +38,8 @@ const ServiceDetails = () => {
                 console.log(res.user)
                 toast.success('Review Completed')
                 form.reset()
+                navigate('/myreview')
+
             })
         
     }
