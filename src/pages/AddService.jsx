@@ -23,7 +23,7 @@ const AddService = () => {
         const date = form.date.value
         const userEmail = user.email
 
-        const services = { title, serviceImage, company, website, category, description, price, date, userEmail }
+        const services = { title, serviceImage, company, website, category, description, price, date, userEmail, reviewCount }
 
         axios.post('http://localhost:6500/addservice', services)
             .then(res => {

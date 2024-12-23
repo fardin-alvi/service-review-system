@@ -26,8 +26,8 @@ const Register = () => {
 
         CreateUser(email, password)
             .then(res => {
-                const user = res.user;
-                setUser(user);
+                console.log(res.user);
+                setUser(res.user);
                 navigate('/')
                 toast.success('Successfully Created');
                 updateprofile({ displayName: name, photoURL: photoUrl })

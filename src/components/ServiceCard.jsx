@@ -2,6 +2,7 @@ import React from 'react';
 import { BiCategory } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 
+
 const ServiceCard = ({ service }) => {
     const {
         title,
@@ -9,7 +10,8 @@ const ServiceCard = ({ service }) => {
         category,
         description,
         price,
-        _id
+        _id,
+        reviewCount
     } = service;
 
     return (
@@ -26,6 +28,9 @@ const ServiceCard = ({ service }) => {
                         <span className='text-gray-500 size-2 flex justify-center items-center'>|</span>
                         <h3 className="font-medium text-gray-700">From ${price}</h3>
                     </div>
+                    <p>Review : {reviewCount}</p>
+                </div>
+                <div className='mt-2'>
                     <Link to={`/servicedetails/${_id}`} className='bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded-md'>See Details</Link>
                 </div>
             </div>

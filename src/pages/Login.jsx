@@ -18,6 +18,7 @@ const Login = () => {
 
         login(email, password)
             .then(res => {
+                console.log(res.user);
                 setUser(res.user)
                 navigate('/')
                 toast.success('Login Successfully')
