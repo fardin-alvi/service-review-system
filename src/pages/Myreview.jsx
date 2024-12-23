@@ -1,19 +1,25 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
+import MyreviewCard from '../components/MyreviewCard';
 
 
 const Myreview = () => {
     const { user } = useAuth()
+    const [reviews,setReviews] = useState([])
     useEffect(() => {
-        axios.get(`http://localhost:6500/myreview/${user?.email}`)
+        axios.get(`http://localhost:6500/myreviews/${user?.email}`)
             .then(res => {
-            console.log(res.data);
+            setReviews(res.data);
         })
     },[])
     return (
         <div>
-            <p>Review :</p>
+            <div className='grid grid-cols-1 gap-y-2 my-10'>
+                {
+                    reviews.map(review=><MyreviewCard review={review} />)
+                }
+            </div>
         </div>
     );
 };

@@ -2,7 +2,12 @@ import React, { useEffect } from 'react';
 import { FaRegSmile } from 'react-icons/fa'; // Replace with your choice of icons
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import image from '../assets/partner/rb_103.png'
+import image1 from '../assets/partner/rb_103.png'
+import image2 from '../assets/partner/logo2.png'
+import image3 from '../assets/partner/logo3.png'
+import image4 from '../assets/partner/logo4.png'
+import image5 from '../assets/partner/logo5.png'
+import image6 from '../assets/partner/logo6.png'
 
 const PartnerSection = () => {
     useEffect(() => {
@@ -10,12 +15,7 @@ const PartnerSection = () => {
     }, []);
 
     const partners = [
-        { name: 'The Best Chef', logo: '../assets/partner/rb_103.png' },
-        { name: 'FoodTaster', logo: '../assets/partner/rb_103.png' },
-        { name: 'Flavor', logo: '../assets/partner/rb_103.png' },
-        { name: 'Culinaire', logo: '../assets/partner/rb_103.png' },
-        { name: 'Eater', logo: '../assets/partner/rb_103.png' },
-        { name: 'Food & Travel', logo: '../assets/partner/rb_103.png' },
+        image1,image2,image3,image4,image5,image6
     ];
 
     return (
@@ -27,7 +27,7 @@ const PartnerSection = () => {
                 </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6 px-4">
+            <div className="w-7/12 mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 px-4">
                 {partners.map((partner, index) => (
                     <div
                         key={index}
@@ -35,9 +35,9 @@ const PartnerSection = () => {
                         className="flex flex-col items-center"
                     >
                         <img
-                            src={image}
-                            alt={partner.name}
-                            className="w-16 h-16 mb-4"
+                            src={partner}
+                            alt='logo'
+                            className="w-36 h-36 mb-4"
                         />
                     </div>
                 ))}

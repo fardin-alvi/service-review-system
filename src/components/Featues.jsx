@@ -5,7 +5,7 @@ import ServiceCard from './ServiceCard';
 const Featues = () => {
     const [services, setServices] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:6500/services')
+        axios.get('http://localhost:6500/service')
             .then(response => {
                 setServices(response.data);
             })

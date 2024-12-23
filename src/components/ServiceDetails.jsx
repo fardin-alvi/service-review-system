@@ -19,37 +19,42 @@ const ServiceDetails = () => {
     const [rating, setRating] = useState(0);
     const [reviews,setReviews] = useState([])
 
-    const handleAddReview = (e) => {
-        const navigate = useNavigate()
-        e.preventDefault()
-        const form = e.target 
-        const review = form.review.value 
-        const date = form.date.value
-        const reviews = {
+    const handleAddReview = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const review = form.review.value;
+        const date = form.date.value;
+
+        const reviewsData = {
             serviceId: _id,
             text: review,
-            rating:rating,
+            rating: rating,
             postedDate: new Date(date),
-            user: { name: user.displayName, userEmail:user.email , photo: user.photoURL },
+            user: { name: user.displayName, userEmail: user.email, photo: user.photoURL },
         };
 
-        axios.post('http://localhost:6500/addreview', reviews)
-            .then(res => {
-                console.log(res.user)
-                toast.success('Review Completed')
-                form.reset()
-                navigate('/myreview')
+        try {
+            const response = await axios.post('http://localhost:6500/addreview', reviewsData);
+            if (response.data.insertedId) {
+                toast.success('Review added successfully!');
+                form.reset();
+                setRating(0); 
+                fetchReviews(); 
+            } else {
+                toast.error('Failed to add review.');
+            }
+        } catch (error) {
+            toast.error('An error occurred.');
+        }
+    };
 
-            })
-        
-    }
-
-    useEffect(() => {
+    const fetchReviews = () => {
         axios.get(`http://localhost:6500/reviews/${_id}`)
-            .then(res => {
-                setReviews(res.data); // Assuming `res.data` contains an array of reviews
-            })
+            .then(res => setReviews(res.data))
             .catch(err => console.error('Error fetching reviews:', err));
+    };
+    useEffect(() => {
+        fetchReviews();
     }, [_id]);
 
     const renderStars = () => {
