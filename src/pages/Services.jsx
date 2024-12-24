@@ -12,6 +12,7 @@ const Services = () => {
     useEffect(() => {
         axios.get('http://localhost:6500/services')
             .then(res => {
+                console.log(res.data);
                 setServices(res.data);
 
                 const categoryfilter = Array.from(new Set(res.data.map(service => service.category)));

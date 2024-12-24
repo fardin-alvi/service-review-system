@@ -31,18 +31,16 @@ const Register = () => {
                 setUser(res.user);
                 navigate('/')
                 const newuser = {
-                    name,
-                    email,
-                    photoUrl
+                    name: res.user.displayName,
+                    email: res.user.email,
+                    photoUrl: res.user.photoURL
                 }
                 axios.post('http://localhost:6500/users', newuser)
                     .then(res => {
-                        console.log('User added to the database:', res.data);
                         toast.success('Successfully Registered');
                     })
                     .catch(error => {
-                        console.error('Error saving user data:', error);
-                        toast.error('Error saving user data');
+                        toast.error('Error Occured:', error);
                     });
                 updateprofile({ displayName: name, photoURL: photoUrl })
                     .then(() => navigate('/'))
@@ -57,7 +55,19 @@ const Register = () => {
             .then(res => {
                 setUser(res.user);
                 navigate('/')
-                toast.success('Signed in with Google successfully');
+                const newuser = {
+                    name:res.user.displayName,
+                    email: res.user.email,
+                    photoUrl:res.user.photoURL
+                }
+                axios.post('http://localhost:6500/users', newuser)
+                    .then(res => {
+                        console.log('User added to the database:', res.data);
+                        toast.success('Successfully Registered');
+                    })
+                    .catch(error => {
+                        toast.error('Error Occured:', error);
+                    });
             })
             .catch(err => seterror(err.message))
     }

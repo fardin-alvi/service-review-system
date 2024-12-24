@@ -11,7 +11,6 @@ const ServiceCard = ({ service }) => {
         description,
         price,
         _id,
-        reviewCount
     } = service;
 
     return (
@@ -19,16 +18,13 @@ const ServiceCard = ({ service }) => {
             <div className="px-5 py-3">
                 <h2 className="text-xl font-bold text-gray-800">{title}</h2>
                 <p className="text-base text-gray-500">{description.substring(0, 30)}...</p>
-                <div className='flex justify-between'>
-                    <div className='space-x-3 flex items-center justify-start'>
-                        <div className='flex items-center space-x-1'>
-                            <BiCategory className="text-gray-500" />
-                            <span className="text-gray-700 font-medium">{category}</span>
-                        </div>
-                        <span className='text-gray-500 size-2 flex justify-center items-center'>|</span>
-                        <h3 className="font-medium text-gray-700">From ${price}</h3>
+                <div className='space-x-3 flex items-center justify-start'>
+                    <div className='flex items-center space-x-1'>
+                        <BiCategory className="text-gray-500" />
+                        <span className="text-gray-700 font-medium">{category}</span>
                     </div>
-                    <p>Review : {reviewCount}</p>
+                    <span className='text-gray-500 size-2 flex justify-center items-center'>|</span>
+                    <h3 className="font-medium text-gray-700">From ${price}</h3>
                 </div>
                 <div className='mt-2'>
                     <Link to={`/servicedetails/${_id}`} className='bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded-md'>See Details</Link>

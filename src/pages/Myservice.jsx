@@ -22,7 +22,7 @@ const Myservice = () => {
         e.preventDefault();
         const form = e.target;
         const updatedData = {
-            image: form.image.value,
+            serviceImage: form.photoUrl.value,
             title: form.title.value,
             companyName: form.companyName.value,
             website: form.website.value,
@@ -38,7 +38,7 @@ const Myservice = () => {
                     toast.success('Service updated successfully!');
                     setServices((prev) =>
                         prev.map((service) =>
-                            service._id === updateService._id ? { ...service, ...updatedData } : service
+                            service._id === updateService._id ? { ...service , ...updatedData } : service
                         )
                     );
                     setUpdateService(null);
@@ -66,7 +66,7 @@ const Myservice = () => {
         service.company.toLowerCase().includes(searchService.toLowerCase()) ||
         service.category.toLowerCase().includes(searchService.toLowerCase())
         
-        
+
     );
 
 
@@ -138,10 +138,11 @@ const Myservice = () => {
                         <h3 className="font-bold text-lg text-center">Update Service</h3>
                         <form onSubmit={handleUpdate} className="mt-4 space-y-4">
                             <input
-                                type="text"
-                                name="image"
+                                type="url"
+                                name="photoUrl"
                                 placeholder="Service Image"
                                 className="input input-bordered w-full"
+                                required
                             />
                             <input
                                 type="text"
@@ -154,29 +155,34 @@ const Myservice = () => {
                                 name="companyName"
                                 placeholder="Company Name"
                                 className="input input-bordered w-full"
+                                required
                             />
                             <input
                                 type="text"
                                 name="website"
                                 placeholder="Website URL"
                                 className="input input-bordered w-full"
+                                required
                             />
                             <textarea
                                 name="description"
                                 placeholder="Description"
                                 className="textarea textarea-bordered w-full"
+                                required
                             ></textarea>
                             <input
                                 type="text"
                                 name="category"
                                 placeholder="Category"
                                 className="input input-bordered w-full"
+                                required
                             />
                             <input
                                 type="number"
                                 name="price"
                                 placeholder="Price"
                                 className="input input-bordered w-full"
+                                required
                             />
                             <div className="modal-action">
                                 <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded-md">Update</button>

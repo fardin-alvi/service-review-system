@@ -3,6 +3,8 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import {toast} from 'react-hot-toast';
+import axios from 'axios';
+import useAxios from '../hooks/useAxios';
 
 const Login = () => {
     const { login, setUser, singinWithGoogle } = useAuth()
@@ -18,7 +20,6 @@ const Login = () => {
 
         login(email, password)
             .then(res => {
-                console.log(res.user);
                 setUser(res.user)
                 navigate('/')
                 toast.success('Login Successfully')
