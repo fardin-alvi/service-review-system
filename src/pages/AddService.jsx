@@ -107,9 +107,11 @@ const AddService = () => {
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700">Date</label>
                                 <input
-                                    name='date'
+                                    name="date"
                                     type="date"
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+                                    defaultValue={new Date().toISOString().split('T')[0]}
+                                    readOnly
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 bg-gray-200 cursor-not-allowed"
                                 />
                             </div>
                         </div>

@@ -11,6 +11,7 @@ import { FcRating } from 'react-icons/fc';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import ReviewCard from './ReviewCard';
+import {format} from 'date-fns'
 
 const ServiceDetails = () => {
     const { user } = useAuth();
@@ -30,6 +31,7 @@ const ServiceDetails = () => {
             text: review,
             rating: rating,
             postedDate: new Date(date),
+            servicetitle : title,
             user: { name: user.displayName, userEmail: user.email, photo: user.photoURL },
         };
 
@@ -86,7 +88,7 @@ const ServiceDetails = () => {
                         <p className="flex gap-x-2 items-center mb-3"><AiFillDribbbleCircle /><span>{website}</span></p>
                         <div className="flex items-center gap-x-10">
                             <p className="flex gap-x-2 items-center mb-3"><IoMdPricetags /><span>{price}</span></p>
-                            <p className="flex gap-x-2 items-center mb-3"><SlCalender /><span>{date}</span></p>
+                            <p className="flex gap-x-2 items-center mb-3"><SlCalender /><span>{format(date, 'PP')}</span></p>
                         </div>
                     </div>
                 </div>
@@ -114,9 +116,11 @@ const ServiceDetails = () => {
                         <div>
                             <label className="block text-sm font-semibold text-gray-700">Review Date</label>
                             <input
-                                name='date'
+                                name="date"
                                 type="date"
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+                                defaultValue={new Date().toISOString().split('T')[0]} 
+                                readOnly
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 bg-gray-200 cursor-not-allowed"
                             />
                         </div>
                         <button
