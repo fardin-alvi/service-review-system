@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 import { format } from 'date-fns';
+import toast from 'react-hot-toast';
 
 const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
-    const { _id, text, rating, postedDate, user } = review;
+    const { _id,serviceId, text, rating, postedDate, user,servicetitle } = review;
 
     const [updateModal, setUpdateModal] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
 
-    // Handle review update
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target
@@ -20,7 +20,8 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
         try {
             const response = await axios.put(`http://localhost:6500/updatereview/${_id}`, updatedData);
             handleUpdated(response.data);
-            setUpdateModal(false); 
+            setUpdateModal(false);
+            toast.success('Review Updated Successfully')
         } catch (error) {
             console.error("Error updating review:", error);
         }
@@ -28,9 +29,10 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://localhost:6500/deletereview/${_id}`);
+            await axios.delete(`http://localhost:6500/deletereview/${_id}?serviceId=${serviceId}`);
             handleDeleted(_id);
             setDeleteModal(false);
+            toast.success('Review Deleted')
         } catch (error) {
             console.error("Error deleting review:", error);
         }
@@ -48,6 +50,7 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
                     <span className="font-bold text-lg">{user.name}</span>
                     <span className="text-gray-500 text-sm">{format(postedDate, 'PP')}</span>
                 </div>
+                <p className='text-lg font-semibold'>{servicetitle}</p>
                 <div className="flex items-center mt-1">
                     {Array(5)
                         .fill(0)
@@ -88,6 +91,13 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
                                 className="w-full border rounded p-2 mb-4"
                                 placeholder="Rating"
                                 required
+                            />
+                            <input
+                                type="text"
+                                name="servicetitle"
+                                className="w-full border rounded p-2 mb-4"
+                                defaultValue={servicetitle}
+                                readOnly
                             />
                             <div className="flex justify-start">
                                 <button

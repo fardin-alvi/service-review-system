@@ -18,7 +18,8 @@ const ServiceDetails = () => {
     const service = useLoaderData();
     const { title, serviceImage, company, website, description, price, date, _id,reviewCount } = service;
     const [rating, setRating] = useState(0);
-    const [reviews,setReviews] = useState([])
+    const [reviews, setReviews] = useState([])
+    const [reviewcount, setReviewcount] = useState(reviewCount);
 
     const handleAddReview = async (e) => {
         e.preventDefault();
@@ -41,7 +42,8 @@ const ServiceDetails = () => {
                 toast.success('Review added successfully!');
                 form.reset();
                 setRating(0); 
-                fetchReviews(); 
+                fetchReviews();
+                setReviewcount(prevCount => prevCount + 1);
             } else {
                 toast.error('Failed to add review.');
             }
@@ -92,7 +94,7 @@ const ServiceDetails = () => {
                         </div>
                     </div>
                 </div>
-                <p className='text-2xl font-semibold text-left mt-3'>Reviews: <span className='bg-purple-200 text-base px-3 rounded-md'>{reviewCount}</span></p>
+                <p className='text-2xl font-semibold text-left mt-3'>Reviews: <span className='bg-purple-200 text-base px-3 rounded-md'>{reviewcount}</span></p>
                 <div className='grid grid-cols-1 gap-y-2 my-3 items-start'>
                     {
                         reviews?.map(review=><ReviewCard key={review._id} review={review}></ReviewCard>)

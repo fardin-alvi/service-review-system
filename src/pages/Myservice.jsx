@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaSearch, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import useAuth from '../hooks/useAuth';
 import {format} from 'date-fns'
@@ -8,7 +8,7 @@ import {format} from 'date-fns'
 const Myservice = () => {
     const [services, setServices] = useState([])
     const { user } = useAuth()
-    const [serachService, setSerchService] = useState('');
+    const [searchService, setSearchService] = useState('');
     const [updateService, setUpdateService] = useState(null);
     const [modal, setModal] = useState('')
     useEffect(() => {
@@ -62,7 +62,11 @@ const Myservice = () => {
 
 
     const filteredServices = services.filter((service) =>
-        service.title.toLowerCase().includes(serachService.toLowerCase())
+        service.title.toLowerCase().includes(searchService.toLowerCase()) ||
+        service.company.toLowerCase().includes(searchService.toLowerCase()) ||
+        service.category.toLowerCase().includes(searchService.toLowerCase())
+        
+        
     );
 
 
@@ -70,13 +74,14 @@ const Myservice = () => {
     return (
         <div className="w-11/12 mx-auto my-10">
             <h1 className="text-2xl font-semibold mb-4">My Services</h1>
-            <div className="relative flex items-center mb-4">
+            <div className="relative w-full mb-3 md:w-1/4">
                 <input
                     type="text"
-                    placeholder="Search Services"
-                    className="border border-1 p-3 w-full max-w-xs"
-                    onChange={(e) => setSerchService(e.target.value)}
+                    placeholder="Search services..."
+                    onChange={(e) => setSearchService(e.target.value)}
+                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
+                <FaSearch className="absolute top-3 right-3 text-gray-500" size={20} />
             </div>
 
             <div className="overflow-x-auto">
@@ -86,6 +91,7 @@ const Myservice = () => {
                             <th>Title</th>
                             <th>Price</th>
                             <th>category</th>
+                            <th>Company</th>
                             <th>Website</th>
                             <th>Posted Date</th>
                             <th>Actions</th>
@@ -97,6 +103,7 @@ const Myservice = () => {
                                 <td>{service.title}</td>
                                 <td>${service.price}</td>
                                 <td>{service.category}</td>
+                                <td>{service.company}</td>
                                 <td>{service.website}</td>
                                 <td>{format(new Date(service.date), 'PP')}</td>
                                 <td>
