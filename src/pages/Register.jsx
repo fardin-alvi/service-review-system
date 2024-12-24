@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { toast} from 'react-hot-toast';
+import axios from 'axios';
 
 
 const Register = () => {
@@ -29,7 +30,20 @@ const Register = () => {
                 console.log(res.user);
                 setUser(res.user);
                 navigate('/')
-                toast.success('Successfully Created');
+                const newuser = {
+                    name,
+                    email,
+                    photoUrl
+                }
+                axios.post('http://localhost:6500/users', newuser)
+                    .then(res => {
+                        console.log('User added to the database:', res.data);
+                        toast.success('Successfully Registered');
+                    })
+                    .catch(error => {
+                        console.error('Error saving user data:', error);
+                        toast.error('Error saving user data');
+                    });
                 updateprofile({ displayName: name, photoURL: photoUrl })
                     .then(() => navigate('/'))
                 setUser((previoususer) => ({ ...previoususer, displayName: name, photoURL: photoUrl }))
