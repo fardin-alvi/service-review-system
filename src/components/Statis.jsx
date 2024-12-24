@@ -12,8 +12,6 @@ const Statis = () => {
             .catch(error => console.error('Error fetching counts:', error));
     }, []);
 
-    console.log(counts);
-
     const stats = [
         { icon: <FaUsers size={40} className="text-purple-500" />, label: "Users", value: counts.users },
         { icon: <FaStar size={40} className="text-yellow-500" />, label: "Reviews", value: counts.reviews },

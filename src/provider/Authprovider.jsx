@@ -39,7 +39,9 @@ const Authprovider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user?.email) {
                 setUser(user);
-                await axiosSecure.post('/jwt', user.email)
+                await axiosSecure.post('/jwt', {
+                    user: user?.email
+                })
                     .then(res => {
                         console.log(res.data);
                 })

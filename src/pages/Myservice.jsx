@@ -4,6 +4,7 @@ import { FaEdit, FaSearch, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import useAuth from '../hooks/useAuth';
 import {format} from 'date-fns'
+import useAxios from '../hooks/useAxios';
 
 const Myservice = () => {
     const [services, setServices] = useState([])
@@ -11,8 +12,10 @@ const Myservice = () => {
     const [searchService, setSearchService] = useState('');
     const [updateService, setUpdateService] = useState(null);
     const [modal, setModal] = useState('')
+    const axiosSecure = useAxios()
+    
     useEffect(() => {
-        axios.get(`http://localhost:6500/servicesbyemail/${user?.email}`)
+        axiosSecure.get(`/myservices/${user?.email}`)
             .then(res => {
             setServices(res.data)
         })

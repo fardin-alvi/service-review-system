@@ -9,11 +9,13 @@ import Services from "../pages/Services";
 import ServiceDetails from "../components/ServiceDetails";
 import Myservice from "../pages/Myservice";
 import Myreview from "../pages/Myreview";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout />,
+        errorElement:<Error/>,
         children: [
             {
                 path: '/',

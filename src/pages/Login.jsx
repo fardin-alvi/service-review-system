@@ -26,7 +26,7 @@ const Login = () => {
             })
             .catch(error => {
                 seterror('Wrong Credential')
-            })
+        })
     }
     const handleGoogle = () => {
         singinWithGoogle()

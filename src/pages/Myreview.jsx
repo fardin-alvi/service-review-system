@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import useAuth from '../hooks/useAuth';
 import MyreviewCard from '../components/MyreviewCard';
+import useAxios from '../hooks/useAxios';
 
 const Myreview = () => {
     const { user } = useAuth();
     const [reviews, setReviews] = useState([]);
+    const axiosSecure = useAxios()
 
     useEffect(() => {
-        axios.get(`http://localhost:6500/myreviews/${user?.email}`).then((res) => {
+        axiosSecure.get(`http://localhost:6500/myreviews/${user?.email}`).then((res) => {
             setReviews(res.data);
         });
     }, [user?.email]);
