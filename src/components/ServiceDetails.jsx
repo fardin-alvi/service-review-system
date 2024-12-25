@@ -77,7 +77,7 @@ const ServiceDetails = () => {
 
     return (
         <div className='grid md:grid-cols-12 grid-cols-1 w-11/12 mx-auto items-start my-10'>
-            {/* Left component */}
+
             <div className=" flex flex-col items-start px-4 py-2 md:col-span-8 ">
                 <div className="max-w-4xl  flex flex-col md:flex-row items-center border-2 rounded-lg overflow-hidden">
                     <div className="relative w-full md:w-1/2 p-6">
@@ -101,7 +101,7 @@ const ServiceDetails = () => {
                     }
                 </div>
             </div>
-            {/* right component */}
+
             <div className='md:col-span-4 flex items-center my-2'>
                 <div className="border-2 rounded-lg p-5 w-full mx-w-lg ">
                     <p className="text-gray-600 mb-2 font-bold text-xl">Add Review</p>

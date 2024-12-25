@@ -8,6 +8,8 @@ const Services = () => {
     const [searchService, setSearchService] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
     const [categories, setCategories] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const servicesPerPage = 6;
 
     useEffect(() => {
         axios.get('http://localhost:6500/services')
@@ -28,6 +30,7 @@ const Services = () => {
         setSelectedCategory(e.target.value);
     };
 
+    // Filtered services based on search and category
     const filteredServices = services.filter(service => {
         const matchSearch = service.title.toLowerCase().includes(searchService.toLowerCase()) ||
             service.company.toLowerCase().includes(searchService.toLowerCase()) ||
@@ -36,6 +39,18 @@ const Services = () => {
 
         return matchSearch && matchesCategory;
     });
+
+    // Pagination logic
+    const indexOfLastService = currentPage * servicesPerPage;
+    const indexOfFirstService = indexOfLastService - servicesPerPage;
+    const currentServices = filteredServices.slice(indexOfFirstService, indexOfLastService);
+
+    const totalPages = Math.ceil(filteredServices.length / servicesPerPage);
+    const pageNumbers = Array.from({ length: totalPages }, (_,index) => index + 1);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
 
     return (
         <div className="w-11/12 mx-auto my-10">
@@ -65,9 +80,20 @@ const Services = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                {
-                    filteredServices.map(service => (<ServiceCard key={service._id} service={service} />))
-                }
+                {currentServices.map(service => (<ServiceCard key={service._id} service={service} />))}
+            </div>
+
+            {/* Pagination */}
+            <div className="flex justify-center mt-5">
+                {pageNumbers.map(pageNumber => (
+                    <button
+                        key={pageNumber}
+                        className={`mx-1 px-3 py-1 border rounded-lg ${currentPage === pageNumber ? 'bg-purple-500 text-white' : 'bg-gray-200'}`}
+                        onClick={() => handlePageChange(pageNumber)}
+                    >
+                        {pageNumber}
+                    </button>
+                ))}
             </div>
         </div>
     );

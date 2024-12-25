@@ -10,14 +10,14 @@ const Myreview = () => {
     const axiosSecure = useAxios()
 
     useEffect(() => {
-        axiosSecure.get(`http://localhost:6500/myreviews/${user?.email}`).then((res) => {
+        axiosSecure.get(`/myreviews/${user?.email}`).then((res) => {
             setReviews(res.data);
         });
     }, [user?.email]);
 
-    const handleUpdated = (update) => {
+    const handleUpdated = (updatedReview) => {
         setReviews((previous) =>
-            previous.map((review) => (review._id === update._id ? update : review))
+            previous.map((review) => (review._id === updatedReview._id ? updatedReview : review))
         );
     };
 

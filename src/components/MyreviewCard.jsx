@@ -19,7 +19,8 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
 
         try {
             const response = await axios.put(`http://localhost:6500/updatereview/${_id}`, updatedData);
-            handleUpdated(response.data);
+            const updatedReview = { ...review, ...updatedData };
+            handleUpdated(updatedReview);
             setUpdateModal(false);
             toast.success('Review Updated Successfully')
         } catch (error) {

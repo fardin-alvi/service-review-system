@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import useAuth from './useAuth';
+import { Authcontext } from '../provider/Authprovider';
+import { signOut } from "firebase/auth";
+
 
 const instance = axios.create({
     baseURL: 'http://localhost:6500',
@@ -9,14 +10,15 @@ const instance = axios.create({
 });
 
 const useAxios = () => {
-    // const { logout } = useAuth()
-    // const navigate = useNavigate()
-
-    // useEffect(() => {
-    //     instance.interceptors.response.use(res => {
-    //         return res
-    //     })
-    // },[])
+    useEffect(() => {
+        instance.interceptors.response.use(res => {
+            return res
+        }, error => {
+            if (error) {
+                signOut
+            }
+        })
+    },[])
     return instance;
 }
 export default useAxios;
