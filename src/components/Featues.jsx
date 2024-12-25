@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ServiceCard from './ServiceCard';
+import useAxios from '../hooks/useAxios';
 
 const Featues = () => {
     const [services, setServices] = useState([]);
+    const axiosSecure = useAxios()
     useEffect(() => {
-        axios.get('http://localhost:6500/service')
+        axiosSecure.get('/service')
             .then(response => {
                 setServices(response.data);
             })
@@ -16,7 +18,7 @@ const Featues = () => {
     return (
         <div className='w-11/12 mx-auto my-10'>
             <div>
-                <h2 className='text-2xl font-bold text-center'>Features of Our Services</h2>
+                <h2 className="text-3xl font-bold text-center mb-2">Features of Our Services</h2>
                 <p className='mx-auto text-center text-gray-500 w-auto md:w-4/6'>
                     Our services are crafted with precision to meet your unique needs, ensuring exceptional quality and satisfaction. With expert professionals and cutting-edge solutions, we deliver results that exceed expectations.
                 </p>

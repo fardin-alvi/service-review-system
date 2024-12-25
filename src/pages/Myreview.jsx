@@ -10,9 +10,10 @@ const Myreview = () => {
     const axiosSecure = useAxios()
 
     useEffect(() => {
-        axiosSecure.get(`/myreviews/${user?.email}`).then((res) => {
-            setReviews(res.data);
-        });
+        axiosSecure.get(`/myreviews/alalajdd`)
+            .then((res) => {
+                setReviews(res.data);
+            });
     }, [user?.email]);
 
     const handleUpdated = (updatedReview) => {

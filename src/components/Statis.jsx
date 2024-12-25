@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CountUp from 'react-countup';
 import { FaUsers, FaStar, FaServicestack } from 'react-icons/fa';
+import useAxios from '../hooks/useAxios';
 
 const Statis = () => {
     const [counts, setCounts] = useState({ usersCount: 0, reviewsCount: 0, servicesCount: 0 });
+    const axiosSecure = useAxios()
 
     useEffect(() => {
-        axios.get('http://localhost:6500/counts')
+        axiosSecure.get('/counts')
             .then(res => setCounts(res.data))
             .catch(error => console.error('Error fetching counts:', error));
     }, []);
@@ -19,10 +21,7 @@ const Statis = () => {
     ];
 
     return (
-        <div>
-            <div>
-                <h2 className='font-semibold text-2xl text-center'>Statistics</h2>
-            </div>
+        <div className='w-11/12 mx-auto'>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-11/12 mx-auto my-10">
                 {stats.map((stat, index) => (
                     <div

@@ -35,7 +35,7 @@ const Myservice = () => {
         };
         
 
-        axios.put(`http://localhost:6500/updateservice/${updateService._id}`, updatedData)
+        axiosSecure.put(`/updateservice/${updateService._id}`, updatedData)
             .then((res) => {
                 if (res.data.modifiedCount > 0) {
                     toast.success('Service updated successfully!');
@@ -52,7 +52,7 @@ const Myservice = () => {
 
 
     const handleDelete = () => {
-        axios.delete(`http://localhost:6500/deleteservice/${updateService._id}`)
+        axiosSecure.delete(`/deleteservice/${updateService._id}`)
             .then((res) => {
                 if (res.data.deletedCount > 0) {
                     toast.success('Service deleted successfully!');

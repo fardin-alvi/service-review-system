@@ -4,11 +4,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { toast} from 'react-hot-toast';
 import axios from 'axios';
+import useAxios from '../hooks/useAxios';
 
 
 const Register = () => {
     const [error, seterror] = useState('')
     const navigate = useNavigate()
+    const axiosSecure = useAxios()
 
     const { CreateUser, setUser, updateprofile, singinWithGoogle } = useAuth()
 
@@ -35,7 +37,7 @@ const Register = () => {
                     email: res.user.email,
                     photoUrl: res.user.photoURL
                 }
-                axios.post('http://localhost:6500/users', newuser)
+                axiosSecure.post('/users', newuser)
                     .then(res => {
                         toast.success('Successfully Registered');
                     })
@@ -60,7 +62,7 @@ const Register = () => {
                     email: res.user.email,
                     photoUrl:res.user.photoURL
                 }
-                axios.post('http://localhost:6500/users', newuser)
+                axiosSecure.post('/users', newuser)
                     .then(res => {
                         console.log('User added to the database:', res.data);
                         toast.success('Successfully Registered');

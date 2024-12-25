@@ -12,17 +12,23 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 import ReviewCard from './ReviewCard';
 import {format} from 'date-fns'
+import useAxios from '../hooks/useAxios';
 
 const ServiceDetails = () => {
     const { user } = useAuth();
     const service = useLoaderData();
-    const { title, serviceImage, company, website, description, price, date, _id,reviewCount } = service;
+    const { title, serviceImage, company, website, description, price, date, _id, reviewCount, userEmail } = service;
     const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([])
     const [reviewcount, setReviewcount] = useState(reviewCount);
+    const axiosSecure = useAxios()
 
     const handleAddReview = async (e) => {
         e.preventDefault();
+        if (user.email === userEmail) {
+            toast.error("You cannot review your own service.");
+            return;
+        }
         const form = e.target;
         const review = form.review.value;
         const date = form.date.value;
@@ -37,7 +43,7 @@ const ServiceDetails = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:6500/addreview', reviewsData);
+            const response = await axiosSecure.post('/addreview', reviewsData);
             if (response.data.insertedId) {
                 toast.success('Review added successfully!');
                 form.reset();
@@ -53,7 +59,7 @@ const ServiceDetails = () => {
     };
 
     const fetchReviews = () => {
-        axios.get(`http://localhost:6500/reviews/${_id}`)
+        axiosSecure.get(`/reviews/${_id}`)
             .then(res => setReviews(res.data))
             .catch(err => console.error('Error fetching reviews:', err));
     };

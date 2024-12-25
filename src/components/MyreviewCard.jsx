@@ -3,9 +3,11 @@ import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
+import useAxios from '../hooks/useAxios';
 
 const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
-    const { _id,serviceId, text, rating, postedDate, user,servicetitle } = review;
+    const { _id, serviceId, text, rating, postedDate, user, servicetitle } = review;
+    const axiosSecure = useAxios()
 
     const [updateModal, setUpdateModal] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
@@ -18,7 +20,7 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
         const updatedData = {text,rating};
 
         try {
-            const response = await axios.put(`http://localhost:6500/updatereview/${_id}`, updatedData);
+            const response = await axiosSecure.put(`/updatereview/${_id}`, updatedData);
             const updatedReview = { ...review, ...updatedData };
             handleUpdated(updatedReview);
             setUpdateModal(false);

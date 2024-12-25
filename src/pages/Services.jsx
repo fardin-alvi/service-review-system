@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ServiceCard from '../components/ServiceCard';
 import { FaSearch } from 'react-icons/fa';
+import useAxios from '../hooks/useAxios';
 
 const Services = () => {
     const [services, setServices] = useState([]);
@@ -9,10 +10,11 @@ const Services = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [categories, setCategories] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const servicesPerPage = 6;
+    const [servicesPerPage,setServicePerPage] = useState(6)
+    const axiosSecure = useAxios()
 
     useEffect(() => {
-        axios.get('http://localhost:6500/services')
+        axiosSecure.get('/services')
             .then(res => {
                 setServices(res.data);
 

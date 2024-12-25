@@ -9,11 +9,13 @@ import ServiceCard from './ServiceCard';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { BiCategory } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import useAxios from '../hooks/useAxios';
 
 const HighReview = () => {
     const [services, setServices] = useState([])
+    const axiosSecure = useAxios()
     useEffect(() => {
-        axios.get('http://localhost:6500/services')
+        axiosSecure.get('/services')
             .then(res => {
             setServices(res.data)
         })
@@ -22,7 +24,7 @@ const HighReview = () => {
     return (
         <section className="w-full px-2 sm:w-11/12 sm:mx-auto my-10">
             <div className='my-10'>
-                <p className="text-2xl md:font-bold sm:text-xl font-semibold text-center">Most Reviewed Services</p>
+                <p className="text-3xl font-bold text-center mb-2">Top Reviewed Services</p>
                 <p className="text-center mb-4 mt-3">
                     Discover our most-reviewed service, trusted by countless customers for its reliability and excellence. <br /> Join the many satisfied clients who have experienced the quality that sets us apart.
                 </p>
@@ -46,7 +48,7 @@ const HighReview = () => {
                             <div className="px-5 py-3">
                                 <h2 className="text-xl font-bold text-gray-800">{service.title}</h2>
                                 <p className="text-base text-gray-500">{service.description.substring(0, 30)}...</p>
-                                <div className='flex justify-between'>
+                                <div className='flex justify-start'>
                                     <div className='space-x-3 flex items-center justify-start'>
                                         <div className='flex items-center space-x-1'>
                                             <BiCategory className="text-gray-500" />
@@ -55,7 +57,6 @@ const HighReview = () => {
                                         <span className='text-gray-500 size-2 flex justify-center items-center'>|</span>
                                         <h3 className="font-medium text-gray-700">From ${service.price}</h3>
                                     </div>
-                                    <p>Review : {service.reviewCount}</p>
                                 </div>
                                 <div className='mt-2'>
                                     <Link to={`/servicedetails/${service._id}`} className='bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded-md'>See Details</Link>

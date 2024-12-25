@@ -21,7 +21,7 @@ const PartnerSection = () => {
     return (
         <div className="my-12">
             <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold mb-2">Meet Our Partners</h2>
+                <h2 className="text-3xl font-bold text-center mb-2">Meet Our Partners</h2>
                 <p className='mx-auto text-center text-gray-500 w-auto md:w-4/6'>
                     Meet our trusted partners who share our vision of excellence and innovation. Together, we create unparalleled experiences to serve our community better.
                 </p>

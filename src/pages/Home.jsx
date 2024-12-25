@@ -4,6 +4,8 @@ import Featues from '../components/Featues';
 import PartnerSection from '../components/PartnerSection';
 import HighReview from '../components/HighReview';
 import Statis from '../components/Statis';
+import Blog from '../components/Blog';
+import Viewer from '../components/Viewer';
 
 const Home = () => {
     return (
@@ -12,7 +14,9 @@ const Home = () => {
             <Featues />
             <PartnerSection />
             <HighReview />
-            <Statis/>
+            <Statis />
+            <Blog/>
+            {/* <Viewer/> */}
         </div>
     );
 };

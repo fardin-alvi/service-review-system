@@ -3,6 +3,7 @@ import auth from "../Firebase/Firebase.init";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import useAxios from '../hooks/useAxios';
+import axios from 'axios';
 
 export const Authcontext = createContext(null)
 const provider = new GoogleAuthProvider();
@@ -10,7 +11,6 @@ const provider = new GoogleAuthProvider();
 const Authprovider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null)
-    const axiosSecure = useAxios()
 
     const CreateUser = (email, password) => {
         setLoading(true)
@@ -39,7 +39,7 @@ const Authprovider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user?.email) {
                 setUser(user);
-                await axiosSecure.post('/jwt', {
+                await axios.post('http://localhost:6500/jwt', {
                     user: user?.email
                 })
                     .then(res => {
@@ -47,7 +47,7 @@ const Authprovider = ({ children }) => {
                 })
             } else {
                 setUser(user)
-                await axiosSecure.get('/logout')
+                await axios.get('http://localhost:6500/logout')
             }
             setLoading(false)
         })
