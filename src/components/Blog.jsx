@@ -4,7 +4,7 @@ import { FaRegCalendarAlt, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const Blog = () => {
     const [blogs, setBlogs] = useState([]);
-    const [showAll, setShowAll] = useState(false); // State to toggle the visibility of all blogs
+    const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:6500/blogs')
@@ -16,7 +16,6 @@ const Blog = () => {
             });
     }, []);
 
-    // Handle the button click to toggle the visibility of all blogs
     const handleSeeAll = () => {
         setShowAll(!showAll);
     };
@@ -46,7 +45,6 @@ const Blog = () => {
                         </div>
                     </div>
 
-                    {/* Show more/less button */}
                     {blogs.length > 2 && (
                         <button
                             className="mt-4 flex items-center text-purple-500"
@@ -66,10 +64,7 @@ const Blog = () => {
                         </button>
                     )}
                 </div>
-
-                {/* right section */}
                 <div className="grid grid-cols-1 gap-4">
-                    {/* Show only 2 cards initially or all depending on showAll */}
                     {blogs.slice(1, showAll ? blogs.length : 3)?.map((blog) => (
                         <div
                             key={blog.id}

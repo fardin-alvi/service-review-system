@@ -14,7 +14,7 @@ const Logout = () => {
         handleLogout();
     }, [auth]);
 
-    return null; // Return null or a meaningful component if needed
+    return null;
 };
 
 export default Logout;

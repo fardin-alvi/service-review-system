@@ -5,7 +5,6 @@ import PartnerSection from '../components/PartnerSection';
 import HighReview from '../components/HighReview';
 import Statis from '../components/Statis';
 import Blog from '../components/Blog';
-import Viewer from '../components/Viewer';
 import { Helmet } from 'react-helmet';
 
 const Home = () => {
@@ -20,7 +19,6 @@ const Home = () => {
             <HighReview />
             <Statis />
             <Blog/>
-            {/* <Viewer/> */}
         </div>
     );
 };
