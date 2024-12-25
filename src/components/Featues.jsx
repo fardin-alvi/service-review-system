@@ -1,13 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ServiceCard from './ServiceCard';
-import useAxios from '../hooks/useAxios';
 
 const Featues = () => {
     const [services, setServices] = useState([]);
-    const axiosSecure = useAxios()
     useEffect(() => {
-        axiosSecure.get('/service')
+        axios.get('http://localhost:6500/service')
             .then(response => {
                 setServices(response.data);
             })

@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import banner1 from '../assets/banner1.jpg'
 import banner2 from '../assets/banner2.jpg'
 import banner3 from '../assets/banner3.jpg'
@@ -17,7 +17,11 @@ const Banner = () => {
                 pagination={{
                     clickable: true,
                 }}
-                modules={[Pagination]}
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
+                modules={[Pagination, Autoplay]}
                 className="mySwiper"
             >
                 <SwiperSlide>

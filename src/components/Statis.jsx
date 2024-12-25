@@ -6,10 +6,9 @@ import useAxios from '../hooks/useAxios';
 
 const Statis = () => {
     const [counts, setCounts] = useState({ usersCount: 0, reviewsCount: 0, servicesCount: 0 });
-    const axiosSecure = useAxios()
 
     useEffect(() => {
-        axiosSecure.get('/counts')
+        axios.get('http://localhost:6500/counts')
             .then(res => setCounts(res.data))
             .catch(error => console.error('Error fetching counts:', error));
     }, []);
