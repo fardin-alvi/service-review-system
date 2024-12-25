@@ -16,7 +16,7 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
         e.preventDefault();
         const form = e.target
         const text = form.text.value
-        const rating = parseInt(form.rating.value, 10)
+        const rating = parseInt(form.rating.value, 5)
         const updatedData = {text,rating};
 
         try {

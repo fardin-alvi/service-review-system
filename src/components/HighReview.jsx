@@ -20,7 +20,10 @@ const HighReview = () => {
             setServices(res.data)
         })
     }, [])
-    const highReviewServices = services.filter(service => service.reviewCount > 0);
+    
+    
+    const filterhighServices = services.filter(service => service.reviewCount > 0).sort((a, b) => b.reviewCount - a.reviewCount).slice(0, 6);
+
     return (
         <section className="w-full px-2 sm:w-11/12 sm:mx-auto my-10">
             <div className='my-10'>
@@ -42,7 +45,7 @@ const HighReview = () => {
                     1024: { slidesPerView: 3 }
                 }}
             >
-                {highReviewServices.map(service => (
+                {filterhighServices.map(service => (
                     <SwiperSlide key={service._id}>
                         <div className="max-w-sm h-[350px] mx-auto bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
                             <div className="px-5 py-3">

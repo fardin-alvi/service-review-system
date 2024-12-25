@@ -8,7 +8,6 @@ const ReviewCard = ({ review }) => {
         <div className="flex items-center border px-6 py-4 rounded-lg shadow-md max-w-2xl mx-auto bg-white">
             <img
                 src={ user.photo}
-                alt={name}
                 className="rounded-full w-24 h-24 mr-4"
             />
             <div>

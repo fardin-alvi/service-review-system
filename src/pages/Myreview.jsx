@@ -3,6 +3,7 @@ import axios from 'axios';
 import useAuth from '../hooks/useAuth';
 import MyreviewCard from '../components/MyreviewCard';
 import useAxios from '../hooks/useAxios';
+import { Helmet } from 'react-helmet';
 
 const Myreview = () => {
     const { user } = useAuth();
@@ -10,7 +11,7 @@ const Myreview = () => {
     const axiosSecure = useAxios()
 
     useEffect(() => {
-        axiosSecure.get(`/myreviews/alalajdd`)
+        axiosSecure.get(`/myreviews/${user?.email}`)
             .then((res) => {
                 setReviews(res.data);
             });
@@ -28,6 +29,9 @@ const Myreview = () => {
 
     return (
         <div className="grid grid-cols-1 gap-y-2 my-10">
+            <Helmet>
+                <title>My Review</title>
+            </Helmet>
             {reviews.map((review) => (
                 <MyreviewCard
                     key={review._id}

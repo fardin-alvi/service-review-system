@@ -5,6 +5,7 @@ import useAuth from '../hooks/useAuth';
 import {toast} from 'react-hot-toast';
 import axios from 'axios';
 import useAxios from '../hooks/useAxios';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
     const { login, setUser, singinWithGoogle } = useAuth()
@@ -39,13 +40,16 @@ const Login = () => {
 
 
     return (
-        <div className="h-screen flex justify-center items-center" style={{
+        <div className="flex justify-center items-center my-10" style={{
             backgroundImage: "url('/src/assets/bglogin.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
         }}>
-            <div className="w-full md:w-4/12 md:mx-auto flex flex-col justify-center items-center bg-white p-6 shadow-lg rounded-lg">
+            <Helmet>
+                <title>Log in</title>
+            </Helmet>
+            <div className="w-full overflow-hidden md:w-4/12 md:mx-auto flex flex-col justify-center items-center bg-white p-6 shadow-lg rounded-lg">
                 <div className="w-full max-w-sm">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">Log In</h1>
                     <p className="text-gray-600 mb-6 text-center">Please enter your details</p>

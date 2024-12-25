@@ -8,20 +8,20 @@ const Navbar = () => {
     const navigate = useNavigate()
 
     const links = <>
-        <NavLink to='/' className='border border-1 text-black md:text-white rounded-lg px-3 py-1 text-lg'>Home</NavLink>
-        <NavLink to='/service' className='border border-1 rounded-lg text-black md:text-white px-3 py-1 text-lg'>Service</NavLink>
+        <NavLink to='/' className={({ isActive }) => `border border-1 text-black md:text-white rounded-lg px-3 py-1 text-lg ${isActive ? 'bg-purple-600 text-white' : ''}`}>Home</NavLink>
+        <NavLink to='/service' className={({ isActive }) => `border border-1 text-black md:text-white rounded-lg px-3 py-1 text-lg ${isActive ? 'bg-purple-600 text-white' : ''}`}>Service</NavLink>
         
         {
             !user && <>
-                <NavLink to='/login' className={({ isActive }) => `md:hidden text-black border rounded-lg text-lg border-gray-300 p-2 ${isActive ? 'bg-teal-400 text-white' : ''}`}>LogIn</NavLink>
-                <NavLink to='/register' className={({ isActive }) => `md:hidden border rounded-lg text-lg text-black border-gray-300 p-2 ${isActive ? 'bg-teal-400 text-white' : ''}`}>Register</NavLink>
+                <NavLink to='/login' className={({ isActive }) => `md:hidden text-black border rounded-lg text-lg border-gray-300 p-2 ${isActive ? 'bg-purple-600 text-white' : ''}`}>LogIn</NavLink>
+                <NavLink to='/register' className={({ isActive }) => `md:hidden border rounded-lg text-lg text-black border-gray-300 p-2 ${isActive ? 'bg-purple-600 text-white' : ''}`}>Register</NavLink>
             </>
         }
         {
             user && <>
-                <NavLink to='/addservice' className='border border-1 rounded-lg text-black md:text-white px-3 py-1 text-lg'>Add Service</NavLink>
-                <NavLink to='/myservice' className='border border-1 rounded-lg text-black md:text-white px-3 py-1 text-lg'>My Service</NavLink>
-                <NavLink to='/myreview' className='border border-1 rounded-lg text-black md:text-white px-3 py-1 text-lg'>My Review</NavLink>
+                <NavLink to='/addservice' className={({ isActive }) => `border border-1 text-black md:text-white rounded-lg px-3 py-1 text-lg ${isActive ? 'bg-purple-600 text-white' : ''}`}>Add Service</NavLink>
+                <NavLink to='/myservice' className={({ isActive }) => `border border-1 text-black md:text-white rounded-lg px-3 py-1 text-lg ${isActive ? 'bg-purple-600 text-white' : ''}`}>My Service</NavLink>
+                <NavLink to='/myreview' className={({ isActive }) => `border border-1 text-black md:text-white rounded-lg px-3 py-1 text-lg ${isActive ? 'bg-purple-600 text-white' : ''}`}>My Review</NavLink>
             </>
         }
     </>

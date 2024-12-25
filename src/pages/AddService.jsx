@@ -5,6 +5,7 @@ import axios from 'axios';
 import {toast} from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import useAxios from '../hooks/useAxios';
+import { Helmet } from 'react-helmet';
 
 const AddService = () => {
     const { user } = useAuth()
@@ -40,6 +41,9 @@ const AddService = () => {
     }
     return (
         <div className="flex flex-col-reverse md:flex-row md:h-screen justify-between">
+            <Helmet>
+                <title>Add Service</title>
+            </Helmet>
             <div className="w-full my-10 md:my-0 md:w-1/2 flex flex-col justify-center items-center bg-white px-3 ">
                 <div className="w-full max-w-sm">
                     <h1 className="text-2xl text-center font-bold text-gray-900 mb-2">Add Your Sevice</h1>

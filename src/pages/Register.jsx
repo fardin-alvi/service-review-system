@@ -5,6 +5,7 @@ import useAuth from '../hooks/useAuth';
 import { toast} from 'react-hot-toast';
 import axios from 'axios';
 import useAxios from '../hooks/useAxios';
+import { Helmet } from 'react-helmet';
 
 
 const Register = () => {
@@ -80,6 +81,9 @@ const Register = () => {
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
         }}>
+            <Helmet>
+                <title>Register</title>
+            </Helmet>
             <div className="w-full md:w-4/12 md:mx-auto flex flex-col justify-center items-center bg-white p-6 shadow-lg rounded-lg">
                 <div className="w-full max-w-sm">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">Register</h1>

@@ -11,6 +11,7 @@ const provider = new GoogleAuthProvider();
 const Authprovider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null)
+    const axiosSecure = useAxios()
 
     const CreateUser = (email, password) => {
         setLoading(true)
@@ -39,7 +40,7 @@ const Authprovider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user?.email) {
                 setUser(user);
-                await axios.post('http://localhost:6500/jwt', {
+                await axiosSecure.post('http://localhost:6500/jwt', {
                     user: user?.email
                 })
                     .then(res => {
@@ -47,7 +48,7 @@ const Authprovider = ({ children }) => {
                 })
             } else {
                 setUser(user)
-                await axios.get('http://localhost:6500/logout')
+                await axiosSecure.post('http://localhost:6500/logout')
             }
             setLoading(false)
         })

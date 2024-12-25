@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ServiceCard from '../components/ServiceCard';
 import { FaSearch } from 'react-icons/fa';
 import useAxios from '../hooks/useAxios';
+import { Helmet } from 'react-helmet';
 
 const Services = () => {
     const [services, setServices] = useState([]);
@@ -56,6 +57,9 @@ const Services = () => {
 
     return (
         <div className="w-11/12 mx-auto my-10">
+            <Helmet>
+                <title>Service</title>
+            </Helmet>
             <p className='text-xl font-semibold mb-5'>All Services</p>
             <div className="flex items-center justify-between mb-6">
                 <div className="relative w-40 md:w-1/4">

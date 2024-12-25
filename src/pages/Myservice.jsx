@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import useAuth from '../hooks/useAuth';
 import {format} from 'date-fns'
 import useAxios from '../hooks/useAxios';
+import { Helmet } from 'react-helmet';
 
 const Myservice = () => {
     const [services, setServices] = useState([])
@@ -76,6 +77,9 @@ const Myservice = () => {
     
     return (
         <div className="w-11/12 mx-auto my-10">
+            <Helmet>
+                <title>My Service</title>
+            </Helmet>
             <h1 className="text-2xl font-semibold mb-4">My Services</h1>
             <div className="relative w-full mb-3 md:w-1/4">
                 <input

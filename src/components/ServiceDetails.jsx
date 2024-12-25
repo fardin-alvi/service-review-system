@@ -13,6 +13,7 @@ import axios from 'axios';
 import ReviewCard from './ReviewCard';
 import {format} from 'date-fns'
 import useAxios from '../hooks/useAxios';
+import { Helmet } from 'react-helmet';
 
 const ServiceDetails = () => {
     const { user } = useAuth();
@@ -60,14 +61,17 @@ const ServiceDetails = () => {
 
     const fetchReviews = () => {
         axiosSecure.get(`/reviews/${_id}`)
-            .then(res => setReviews(res.data))
+            .then(res => {
+                console.log(res.data);
+                setReviews(res.data)
+            })
             .catch(err => console.error('Error fetching reviews:', err));
     };
     useEffect(() => {
         fetchReviews();
     }, [_id]);
 
-    const renderStars = () => {
+    const takeStars = () => {
         return Array(5).fill(0).map((_, index) => (
                 <FaStar
                     key={index}
@@ -83,7 +87,9 @@ const ServiceDetails = () => {
 
     return (
         <div className='grid md:grid-cols-12 grid-cols-1 w-11/12 mx-auto items-start my-10'>
-
+            <Helmet>
+                <title>Service | {title}</title>
+            </Helmet>
             <div className=" flex flex-col items-start px-4 py-2 md:col-span-8 ">
                 <div className="max-w-4xl  flex flex-col md:flex-row items-center border-2 rounded-lg overflow-hidden">
                     <div className="relative w-full md:w-1/2 p-6">
@@ -119,7 +125,7 @@ const ServiceDetails = () => {
                         </div>
                         <div className="flex items-center gap-x-2">
                             <label className="block text-sm font-semibold text-gray-700 ">Rating</label>
-                            <div className="flex">{renderStars()}</div>
+                            <div className="flex">{takeStars()}</div>
                         </div>
                         <div>
                             <label className="block text-sm font-semibold text-gray-700">Review Date</label>

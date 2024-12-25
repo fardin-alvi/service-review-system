@@ -23,7 +23,10 @@ const Blog = () => {
 
     return (
         <div className="w-11/12 mx-auto my-10">
-            <h2 className="text-3xl font-bold text-start mb-8">Featured Blogs</h2>
+            <h2 className="text-3xl font-bold text-center mb-2">Elevating Your Experience</h2>
+            <p className='mx-auto text-center text-gray-500 w-auto md:w-4/6 mb-8'>
+                Learn how our services are shaping a brighter tomorrow for learners of all ages.Unveiling the best services to help you lead a healthier and happier life.Explore cutting-edge services crafted for seamless integration and efficiency.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="md:col-span-2">
                     <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow">
