@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FaEdit, FaSearch, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import useAuth from '../hooks/useAuth';
-import {format} from 'date-fns'
+import { format } from 'date-fns'
 import useAxios from '../hooks/useAxios';
 import { Helmet } from 'react-helmet';
 
@@ -14,12 +14,12 @@ const Myservice = () => {
     const [updateService, setUpdateService] = useState(null);
     const [modal, setModal] = useState('')
     const axiosSecure = useAxios()
-    
+
     useEffect(() => {
-        axiosSecure.get(`/myservices/${user?.email}`)
+        axios.get(`https://deck-serve-server.vercel.app/myservices/${user?.email}`, { withCredentials: true })
             .then(res => {
-            setServices(res.data)
-        })
+                setServices(res.data)
+            })
     }, [user?.email])
 
     const handleUpdate = (e) => {
@@ -34,7 +34,7 @@ const Myservice = () => {
             category: form.category.value,
             price: form.price.value,
         };
-        
+
 
         axiosSecure.put(`/updateservice/${updateService._id}`, updatedData)
             .then((res) => {
@@ -42,7 +42,7 @@ const Myservice = () => {
                     toast.success('Service updated successfully!');
                     setServices((prev) =>
                         prev.map((service) =>
-                            service._id === updateService._id ? { ...service , ...updatedData } : service
+                            service._id === updateService._id ? { ...service, ...updatedData } : service
                         )
                     );
                     setUpdateService(null);
@@ -69,12 +69,12 @@ const Myservice = () => {
         service.title.toLowerCase().includes(searchService.toLowerCase()) ||
         service.company.toLowerCase().includes(searchService.toLowerCase()) ||
         service.category.toLowerCase().includes(searchService.toLowerCase())
-        
+
 
     );
 
 
-    
+
     return (
         <div className="w-11/12 mx-auto my-10">
             <Helmet>

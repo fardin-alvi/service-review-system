@@ -42,7 +42,7 @@ const Register = () => {
                         toast.success('Successfully Registered');
                     })
                     .catch(error => {
-                        toast.error('Error Occured:', error);
+                        console.log('Error Occured:', error);
                     });
                 updateprofile({ displayName: name, photoURL: photoUrl })
                     .then(() => navigate('/'))
@@ -67,7 +67,7 @@ const Register = () => {
                         toast.success('Successfully Registered');
                     })
                     .catch(error => {
-                        toast.error('Error Occured:', error);
+                        console.log('Error Occured:', error);
                     });
             })
             .catch(err => seterror(err.message))

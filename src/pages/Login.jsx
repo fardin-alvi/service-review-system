@@ -8,7 +8,7 @@ import useAxios from '../hooks/useAxios';
 import { Helmet } from 'react-helmet';
 
 const Login = () => {
-    const { login, setUser, singinWithGoogle } = useAuth()
+    const { login, setUser, singinWithGoogle,setLoading } = useAuth()
     const [error, seterror] = useState('')
     const navigate = useNavigate()
 

@@ -37,19 +37,20 @@ const Authprovider = ({ children }) => {
     }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            if (user?.email) {
-                setUser(user);
-                await axiosSecure.post('https://deck-serve-server.vercel.app/jwt', {
-                    user: user?.email
-                })
+        const unsubscribe = onAuthStateChanged(auth, async (cuser) => {
+            if (cuser?.email) {
+                setUser(cuser);
+                axios.post('https://deck-serve-server.vercel.app/jwt', {
+                    user: cuser?.email
+                }, { withCredentials: true })
                     .then(res => {
+                        setLoading(false)
                     })
             } else {
-                setUser(user)
-                await axiosSecure.post('https://deck-serve-server.vercel.app/logout')
+                setUser(cuser)
+                await axios.post('https://deck-serve-server.vercel.app/logout', {}, { withCredentials: true })
+                setLoading(false)
             }
-            setLoading(false)
         })
         return () => {
             unsubscribe()
