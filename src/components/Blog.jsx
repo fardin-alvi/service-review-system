@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaRegCalendarAlt, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const Blog = () => {
@@ -7,12 +8,12 @@ const Blog = () => {
     const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:6500/blogs')
+        axios.get('https://deck-serve-server.vercel.app/blogs')
             .then(res => {
                 setBlogs(res.data);
             })
             .catch(error => {
-                console.error("There was an error fetching the blogs:", error);
+                toast.error("There was an error fetching the blogs:", error);
             });
     }, []);
 

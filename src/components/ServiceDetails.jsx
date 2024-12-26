@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { FaBuildingColumns } from "react-icons/fa6";
 import { AiFillDribbbleCircle } from 'react-icons/ai';
 import { IoMdPricetags } from 'react-icons/io';
@@ -65,7 +65,7 @@ const ServiceDetails = () => {
                 console.log(res.data);
                 setReviews(res.data)
             })
-            .catch(err => console.error('Error fetching reviews:', err));
+            .catch(err => toast.error('Error fetching reviews:', err));
     };
     useEffect(() => {
         fetchReviews();

@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout />,
-        errorElement:<Error/>,
+        errorElement: <Error />,
         children: [
             {
                 path: '/',
@@ -43,8 +43,8 @@ const router = createBrowserRouter([
             {
                 path: '/servicedetails/:id',
                 element: <ServiceDetails />,
-                loader: ({ params }) => fetch(`http://localhost:6500/services/${params.id}`)
-                
+                loader: ({ params }) => fetch(`https://deck-serve-server.vercel.app/services/${params.id}`)
+
             },
             {
                 path: 'myservice',

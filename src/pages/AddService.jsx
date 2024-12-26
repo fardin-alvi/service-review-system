@@ -27,6 +27,18 @@ const AddService = () => {
         const userEmail = user.email
         const reviewCount = 0
 
+        const checkImage = /\.(jpg|jpeg|png)$/i;
+        if (!checkImage.test(serviceImage)) {
+            toast.error("Incorrect Image Url");
+            return;
+        }
+
+        const checkWebsite = /^https?:\/\/[\w.-]+/i;
+        if (!checkWebsite.test(website)) {
+            toast.error("Incorrect Website Url");
+            return;
+        }
+
         const services = { title, serviceImage, company, website, category, description, price, date, userEmail, reviewCount }
 
         axiosSecure.post('/addservice', services)

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn, FaServicestack } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -7,7 +8,7 @@ const Footer = () => {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
-                         <a className="text-xl flex items-center gap-1 "><FaServicestack className='size-7' /><span className='pt-2'><span className='text-teal-700' >Deck</span>Serve</span></a>
+                        <a className="text-xl flex items-center gap-1 "><FaServicestack className='size-7' /><span className='pt-2'><span className='text-teal-700' >Deck</span>Serve</span></a>
                         <p className="mt-2">
                             With DeckServe, discover the best-rated services <br /> in your area or provide feedback <br /> to help businesses improve and thrive.
                         </p>
@@ -16,10 +17,10 @@ const Footer = () => {
                     <div className="text-center">
                         <h3 className="text-lg font-semibold">Usefull Links</h3>
                         <div className="flex justify-center mt-4 space-x-4">
-                            <p>Home</p>
-                            <p>Home</p>
-                            <p>Home</p>
-                            <p>Home</p>
+                            <Link to='/' >Home</Link>
+                            <Link to='/service' >Service</Link>
+                            <Link to='/register' >Register</Link>
+                            <Link to='/myservice' >My Service</Link>
                         </div>
                     </div>
                     <div>

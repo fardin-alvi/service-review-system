@@ -4,6 +4,7 @@ import ServiceCard from '../components/ServiceCard';
 import { FaSearch } from 'react-icons/fa';
 import useAxios from '../hooks/useAxios';
 import { Helmet } from 'react-helmet';
+import toast from 'react-hot-toast';
 
 const Services = () => {
     const [services, setServices] = useState([]);
@@ -22,7 +23,7 @@ const Services = () => {
                 const categoryfilter = Array.from(new Set(res.data.map(service => service.category)));
                 setCategories(categoryfilter);
             })
-            .catch(error => console.error('Error fetching services:', error));
+            .catch(error => toast.error('Error fetching services:', error));
     }, []);
 
     const handleSearch = (e) => {

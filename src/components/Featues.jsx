@@ -1,16 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ServiceCard from './ServiceCard';
+import toast from 'react-hot-toast';
 
 const Featues = () => {
     const [services, setServices] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:6500/service')
+        axios.get('https://deck-serve-server.vercel.app/service')
             .then(response => {
                 setServices(response.data);
             })
             .catch(error => {
-                console.error("Error fetching services:", error);
+                toast.error("Error fetching services:", error);
             });
     }, []);
     return (
@@ -25,7 +26,7 @@ const Featues = () => {
                 {
                     services.map(service => <ServiceCard key={service._id} service={service} ></ServiceCard>)
                 }
-            </div>  
+            </div>
         </div>
     );
 };

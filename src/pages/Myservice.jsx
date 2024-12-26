@@ -48,7 +48,7 @@ const Myservice = () => {
                     setUpdateService(null);
                 }
             })
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err));
     };
 
 
@@ -61,7 +61,7 @@ const Myservice = () => {
                     setUpdateService(null);
                 }
             })
-            .catch((err) => console.error(err));
+            .catch((err) => toast.error(err));
     };
 
 

@@ -17,7 +17,7 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
         const form = e.target
         const text = form.text.value
         const rating = parseInt(form.rating.value, 5)
-        const updatedData = {text,rating};
+        const updatedData = { text, rating };
 
         try {
             const response = await axiosSecure.put(`/updatereview/${_id}`, updatedData);
@@ -26,18 +26,18 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
             setUpdateModal(false);
             toast.success('Review Updated Successfully')
         } catch (error) {
-            console.error("Error updating review:", error);
+            toast.error("Error updating review:", error);
         }
     };
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://localhost:6500/deletereview/${_id}?serviceId=${serviceId}`);
+            await axios.delete(`https://deck-serve-server.vercel.app/deletereview/${_id}?serviceId=${serviceId}`);
             handleDeleted(_id);
             setDeleteModal(false);
             toast.success('Review Deleted')
         } catch (error) {
-            console.error("Error deleting review:", error);
+            toast.error("Error deleting review:", error);
         }
     };
 

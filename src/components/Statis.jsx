@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CountUp from 'react-countup';
 import { FaUsers, FaStar, FaServicestack } from 'react-icons/fa';
-import useAxios from '../hooks/useAxios';
+import toast from 'react-hot-toast';
 
 const Statis = () => {
     const [counts, setCounts] = useState({ usersCount: 0, reviewsCount: 0, servicesCount: 0 });
 
     useEffect(() => {
-        axios.get('http://localhost:6500/counts')
+        axios.get('https://deck-serve-server.vercel.app/counts')
             .then(res => setCounts(res.data))
-            .catch(error => console.error('Error fetching counts:', error));
+            .catch(error => toast.error('Error fetching counts:', error));
     }, []);
 
     const stats = [

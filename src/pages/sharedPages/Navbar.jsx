@@ -29,11 +29,9 @@ const Navbar = () => {
     const handlelogout = () => {
         logout()
             .then(res => {
-                console.log(res.user);
                 navigate('/login');
             })
             .catch(err => {
-                console.log(err.message);
             });
     };
 

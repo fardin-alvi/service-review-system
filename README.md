@@ -1,8 +1,38 @@
-# React + Vite
+# DeckServe
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+DeckServe is a platform designed to explore different service experiences, find exclusive and customer needed services, and consult with service for get there wanted service.
 
-Currently, two official plugins are available:
+## Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Browse a variety of Services
+- Get the customer or user wanted Services easily.
+- Also Get the Guidence which Service is Best for give good user experience.
+
+## Live URL
+
+https://deckservice-e6fc4.web.app
+
+## Key Features
+
+- User-Friendly UI/UX design for seamless exploration.
+- Details about each different Services.
+- Option for users to review the services.
+- Optimized for all devices (mobile, tablet, desktop).
+- Easily find user needed service with search & filterized.
+- Easily added the services.
+
+## NPM Packages Used
+
+- **React** 
+- **React Router**
+- **React Icon**
+- **AOS**
+- **Firebase**
+- **Swiper JS**
+- **React CountUp**
+- **Date Fns**
+- **React hot toast**
+- **React Spinners**
+- **React Helmet**
+- **Axios**
+

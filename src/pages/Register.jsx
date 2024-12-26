@@ -30,7 +30,6 @@ const Register = () => {
 
         CreateUser(email, password)
             .then(res => {
-                console.log(res.user);
                 setUser(res.user);
                 navigate('/')
                 const newuser = {
@@ -65,7 +64,6 @@ const Register = () => {
                 }
                 axiosSecure.post('/users', newuser)
                     .then(res => {
-                        console.log('User added to the database:', res.data);
                         toast.success('Successfully Registered');
                     })
                     .catch(error => {

@@ -4,8 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { FaStar } from "react-icons/fa";
-import ServiceCard from './ServiceCard';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { BiCategory } from 'react-icons/bi';
 import { Link } from 'react-router-dom';

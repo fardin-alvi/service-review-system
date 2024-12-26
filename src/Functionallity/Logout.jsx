@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { signOut } from 'firebase/auth';
 import auth from '../Firebase/Firebase.init';
+import toast from 'react-hot-toast';
 
 const Logout = () => {
     useEffect(() => {
@@ -8,7 +9,7 @@ const Logout = () => {
             try {
                 await signOut(auth);
             } catch (error) {
-                console.error("Error during sign-out:", error);
+                toast.error("Error during sign-out:", error);
             }
         };
         handleLogout();

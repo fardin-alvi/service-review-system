@@ -40,15 +40,14 @@ const Authprovider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user?.email) {
                 setUser(user);
-                await axiosSecure.post('http://localhost:6500/jwt', {
+                await axiosSecure.post('https://deck-serve-server.vercel.app/jwt', {
                     user: user?.email
                 })
                     .then(res => {
-                        console.log(res.data);
-                })
+                    })
             } else {
                 setUser(user)
-                await axiosSecure.post('http://localhost:6500/logout')
+                await axiosSecure.post('https://deck-serve-server.vercel.app/logout')
             }
             setLoading(false)
         })

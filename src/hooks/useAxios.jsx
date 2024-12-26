@@ -6,7 +6,7 @@ import Logout from '../Functionallity/Logout';
 import Navigate from '../Functionallity/Navigate';
 
 const instance = axios.create({
-    baseURL: 'http://localhost:6500',
+    baseURL: 'https://deck-serve-server.vercel.app',
     withCredentials: true,
 });
 
