@@ -5,8 +5,10 @@ import { FaSearch } from 'react-icons/fa';
 import useAxios from '../hooks/useAxios';
 import { Helmet } from 'react-helmet';
 import toast from 'react-hot-toast';
+import useAuth from '../hooks/useAuth';
 
 const Services = () => {
+    const {setLoading} = useAuth()
     const [services, setServices] = useState([]);
     const [searchService, setSearchService] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -16,12 +18,13 @@ const Services = () => {
     const axiosSecure = useAxios()
 
     useEffect(() => {
+        setLoading(true)
         axiosSecure.get('/services')
             .then(res => {
                 setServices(res.data);
-
                 const categoryfilter = Array.from(new Set(res.data.map(service => service.category)));
                 setCategories(categoryfilter);
+                setLoading(false)
             })
             .catch(error => toast.error('Error fetching services:', error));
     }, []);

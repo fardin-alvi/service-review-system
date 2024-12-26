@@ -33,7 +33,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="border-t border-gray-800 mt-8 pt-4 text-center text-sm flex flex-col-reverse md:flex-row justify-between items-center gap-y-3 md:gap-y-0">
-                    <p>&copy; 2024 Blue Fountain Media. All rights reserved.</p>
+                    <p>&copy; 2024 DeckServe. All rights reserved.</p>
                     <div className="flex justify-center mt-4 space-x-4">
                         <a
                             href="#"

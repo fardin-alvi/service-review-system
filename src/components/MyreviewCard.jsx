@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
@@ -7,24 +6,23 @@ import useAxios from '../hooks/useAxios';
 
 const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
     const { _id, serviceId, text, rating, postedDate, user, servicetitle } = review;
-    const axiosSecure = useAxios()
+    const axiosSecure = useAxios();
 
     const [updateModal, setUpdateModal] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
+    const [newRating, setNewRating] = useState(rating || 0);
+    const [updatedText, setUpdatedText] = useState(text);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const form = e.target
-        const text = form.text.value
-        const rating = parseInt(form.rating.value, 5)
-        const updatedData = { text, rating };
+        const updatedData = { text: updatedText, rating: newRating };
 
         try {
             const response = await axiosSecure.put(`/updatereview/${_id}`, updatedData);
             const updatedReview = { ...review, ...updatedData };
             handleUpdated(updatedReview);
             setUpdateModal(false);
-            toast.success('Review Updated Successfully')
+            toast.success('Review Updated Successfully');
         } catch (error) {
             toast.error("Error updating review:", error);
         }
@@ -32,10 +30,10 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`https://deck-serve-server.vercel.app/deletereview/${_id}?serviceId=${serviceId}`);
+            await axiosSecure.delete(`/deletereview/${_id}?serviceId=${serviceId}`);
             handleDeleted(_id);
             setDeleteModal(false);
-            toast.success('Review Deleted')
+            toast.success('Review Deleted');
         } catch (error) {
             toast.error("Error deleting review:", error);
         }
@@ -51,9 +49,9 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
             <div>
                 <div className="flex flex-col">
                     <span className="font-bold text-lg">{user.name}</span>
-                    <span className="text-gray-500 text-sm">{format(postedDate, 'PP')}</span>
+                    <span className="text-gray-500 text-sm">{format(new Date(postedDate), 'PP')}</span>
                 </div>
-                <p className='text-lg font-semibold'>{servicetitle}</p>
+                <p className="text-lg font-semibold">{servicetitle}</p>
                 <div className="flex items-center mt-1">
                     {Array(5)
                         .fill(0)
@@ -79,44 +77,50 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
 
             {updateModal && (
                 <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center">
-                    <div className="bg-white p-4 rounded-lg shadow-lg">
+                    <div className="bg-white w-80 p-6 rounded-lg shadow-lg">
                         <h2 className="text-lg font-bold mb-4">Update Review</h2>
                         <form onSubmit={handleSubmit}>
                             <textarea
-                                name="text"
+                                value={updatedText}
+                                onChange={(e) => setUpdatedText(e.target.value)}
                                 className="w-full border rounded p-2 mb-4"
                                 placeholder="Update your review"
                                 required
                             />
-                            <input
-                                type="number"
-                                name="rating"
-                                className="w-full border rounded p-2 mb-4"
-                                placeholder="Rating"
-                                required
-                            />
-                            <input
-                                type="text"
-                                name="servicetitle"
-                                className="w-full border rounded p-2 mb-4"
-                                defaultValue={servicetitle}
-                                readOnly
-                            />
+                            <div className="flex gap-x-2 items-center mb-4">
+                                <p className='font-medium'>Rating:</p>
+                                {Array(5)
+                                    .fill(0)
+                                    .map((_, index) => (
+                                        <FaStar
+                                            key={index}
+                                            size={24}
+                                            color={index < newRating ? "#FFD700" : "#D3D3D3"}
+                                            className="cursor-pointer"
+                                            onClick={() => setNewRating(index + 1)}
+                                        />
+                                    ))}
+                            </div>
                             <div className="flex justify-start">
                                 <button
                                     type="button"
                                     onClick={() => setUpdateModal(false)}
-                                    className="bg-base-200 px-4 py-2 rounded mr-3"
-                                > Cancel</button>
+                                    className="bg-gray-300 text-black px-4 py-2 rounded mr-3"
+                                >
+                                    Cancel
+                                </button>
                                 <button
                                     type="submit"
                                     className="bg-purple-500 text-white px-4 py-2 rounded"
-                                > Update</button>
+                                >
+                                    Update
+                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
             )}
+
             {deleteModal && (
                 <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center">
                     <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -125,12 +129,16 @@ const MyreviewCard = ({ review, handleUpdated, handleDeleted }) => {
                         <div className="flex justify-start mt-4">
                             <button
                                 onClick={() => setDeleteModal(false)}
-                                className="bg-base-200 text-black px-4 py-2 rounded mr-3"
-                            >Cancel</button>
+                                className="bg-gray-300 text-black px-4 py-2 rounded mr-3"
+                            >
+                                Cancel
+                            </button>
                             <button
                                 onClick={handleDelete}
                                 className="bg-red-500 text-white px-4 py-2 rounded"
-                            >Delete</button>
+                            >
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </div>
