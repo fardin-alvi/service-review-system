@@ -62,7 +62,6 @@ const ServiceDetails = () => {
     const fetchReviews = () => {
         axiosSecure.get(`/reviews/${_id}`)
             .then(res => {
-                console.log(res.data);
                 setReviews(res.data)
             })
             .catch(err => toast.error('Error fetching reviews:', err));
