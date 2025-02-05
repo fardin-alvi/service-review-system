@@ -36,14 +36,14 @@ https://deckservice-e6fc4.web.app
 - **MongoDb**
 - **DaisyUi**
 
-### Dependencies
+## Dependencies
 - date-fns: version-4.1.0
 - react-datepicker: version-7.5.0
 - react-helmet: version-6.1.0
 - react-hot-toast: version-2.4.1
 - react-spinners: version-0.15.0
 
-### How to Work
+## How to Work
 
 - clone the repo
 - install required dependencies
