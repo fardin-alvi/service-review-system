@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 const instance = axios.create({
-    baseURL: 'https://deck-serve-server.vercel.app',
+    baseURL: 'http://localhost:6500',
     withCredentials: true,
 });
 

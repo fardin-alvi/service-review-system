@@ -11,7 +11,7 @@ import banner4 from '../assets/banner4.jpg'
 
 const Banner = () => {
     return (
-        <div className='my-7 w-11/12 mx-auto '>
+        <div className='my-7 z-10 w-11/12 mx-auto'>
             <Swiper
                 spaceBetween={30}
                 pagination={{

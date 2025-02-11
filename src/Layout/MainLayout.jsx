@@ -6,11 +6,9 @@ import Footer from '../pages/sharedPages/Footer';
 const MainLayout = () => {
     return (
         <div>
-            <nav className='bg-gray-900 text-white'>
-                <Navbar/>
-            </nav>
+            <Navbar />
             <Outlet />
-            <Footer/>
+            <Footer />
         </div>
     );
 };

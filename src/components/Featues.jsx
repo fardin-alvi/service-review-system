@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 const Featues = () => {
     const [services, setServices] = useState([]);
     useEffect(() => {
-        axios.get('https://deck-serve-server.vercel.app/service')
+        axios.get('http://localhost:6500/service')
             .then(response => {
                 setServices(response.data);
             })

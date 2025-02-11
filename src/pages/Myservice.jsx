@@ -16,7 +16,7 @@ const Myservice = () => {
     const axiosSecure = useAxios()
 
     useEffect(() => {
-        axios.get(`https://deck-serve-server.vercel.app/myservices/${user?.email}`, { withCredentials: true })
+        axios.get(`http://localhost:6500/myservices/${user?.email}`, { withCredentials: true })
             .then(res => {
                 setServices(res.data)
             })
