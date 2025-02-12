@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaServicestack } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { CiLight } from "react-icons/ci";
+import { MdDarkMode } from "react-icons/md";
 
 const Navbar = () => {
     const { user, logout } = useAuth()
     const navigate = useNavigate()
-    
+    const [darkMode, setDarkMode] = useState(false); 
+
+    useEffect(() => {
+        if (darkMode) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    }, [darkMode]);
+
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+    };
+ 
 
     const links = <>
         <NavLink to='/' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'text-white'}`}>Home</NavLink>
@@ -69,6 +84,12 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end space-x-2">
+                <button
+                    onClick={toggleDarkMode}
+                    className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700"
+                >
+                    {darkMode ? <MdDarkMode className="text-xl" /> : <CiLight className="text-xl" />}
+                </button>
                 {
                     user ?
                         <div className='flex items-center space-x-2'>
