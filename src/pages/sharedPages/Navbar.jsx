@@ -8,32 +8,25 @@ import { MdDarkMode } from "react-icons/md";
 const Navbar = () => {
     const { user, logout } = useAuth()
     const navigate = useNavigate()
-    const [darkMode, setDarkMode] = useState(false); 
+    const [darkMode, setDarkMode] = useState(
+        localStorage.getItem("theme") === "dark"
+    );
 
     useEffect(() => {
         if (darkMode) {
-            document.documentElement.classList.add('dark');
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("theme", "dark");
         } else {
-            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("theme", "light");
         }
     }, [darkMode]);
-
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-    };
  
 
     const links = <>
         <NavLink to='/' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'text-white'}`}>Home</NavLink>
         <NavLink to='/service' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'text-white'}`}>Service</NavLink>
         <a href="#contact" className="text-lg px-3 text-white">Contact</a>
-        
-        {/* {
-            !user && <>
-                <NavLink to='/login' className={({ isActive }) => `md:hidden text-black border rounded-lg text-lg border-gray-300 p-2 ${isActive ? 'bg-purple-600 text-white' : ''}`}>LogIn</NavLink>
-                <NavLink to='/register' className={({ isActive }) => `md:hidden border rounded-lg text-lg text-black border-gray-300 p-2 ${isActive ? 'bg-purple-600 text-white' : ''}`}>Register</NavLink>
-            </>
-        } */}
         {
             user && <>
                 <NavLink to='/addservice' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'text-white'}`}>Add Service</NavLink>
@@ -53,7 +46,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="navbar text-white px-12 mx-auto sticky top-0 z-[1000] bg-gray-800">
+        <div className="navbar text-white px-12 mx-auto sticky top-0 z-[1000] bg-gray-800 dark:bg-black">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex="0" role="button" className="btn btn-ghost lg:hidden">
@@ -85,8 +78,8 @@ const Navbar = () => {
             </div>
             <div className="navbar-end space-x-2">
                 <button
-                    onClick={toggleDarkMode}
-                    className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700"
+                    onClick={() => setDarkMode(!darkMode)}
+                    className="p-2 rounded-lg"
                 >
                     {darkMode ? <MdDarkMode className="text-xl" /> : <CiLight className="text-xl" />}
                 </button>
