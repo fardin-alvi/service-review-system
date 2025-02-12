@@ -24,14 +24,14 @@ const Navbar = () => {
  
 
     const links = <>
-        <NavLink to='/' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'text-white'}`}>Home</NavLink>
-        <NavLink to='/service' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'text-white'}`}>Service</NavLink>
-        <a href="#contact" className="text-lg px-3 text-white">Contact</a>
+        <NavLink to='/' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'dark:text-white'}`}>Home</NavLink>
+        <NavLink to='/service' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'dark:text-white'}`}>Service</NavLink>
+        <a href="#contact" className="text-lg px-3 dark:text-white">Contact</a>
         {
             user && <>
-                <NavLink to='/addservice' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'text-white'}`}>Add Service</NavLink>
-                <NavLink to='/myservice' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'text-white'}`}>My Service</NavLink>
-                <NavLink to='/myreview' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'text-white'}`}>My Review</NavLink>
+                <NavLink to='/addservice' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'dark:text-white'}`}>Add Service</NavLink>
+                <NavLink to='/myservice' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'dark:text-white'}`}>My Service</NavLink>
+                <NavLink to='/myreview' className={({ isActive }) => `text-lg px-3 ${isActive ? 'text-purple-600 text-xl' : 'dark:text-white'}`}>My Review</NavLink>
             </>
         }
     </>
@@ -46,7 +46,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="navbar text-white px-12 mx-auto sticky top-0 z-[1000] bg-gray-800 dark:bg-black">
+        <div className="navbar text-white lg:px-12 md:px-5 mx-auto sticky top-0 z-[1000] bg-gray-800 dark:bg-black">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex="0" role="button" className="btn btn-ghost lg:hidden">
@@ -65,7 +65,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex="0"
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-lg z-50 mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-100 text-black dark:bg-black rounded-lg z-50 mt-3 w-52 p-2 shadow ">
                         {links}
                     </ul>
                 </div>

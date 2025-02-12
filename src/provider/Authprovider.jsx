@@ -39,7 +39,7 @@ const Authprovider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, async (cuser) => {
             if (cuser?.email) {
                 setUser(cuser);
-                axios.post('http://localhost:6500/jwt', {
+                axios.post('https://deck-serve-server.vercel.app/jwt', {
                     user: cuser?.email
                 }, { withCredentials: true })
                     .then(res => {
@@ -47,7 +47,7 @@ const Authprovider = ({ children }) => {
                     })
             } else {
                 setUser(cuser)
-                await axios.post('http://localhost:6500/logout', {}, { withCredentials: true })
+                await axios.post('https://deck-serve-server.vercel.app/logout', {}, { withCredentials: true })
                 setLoading(false)
             }
         })

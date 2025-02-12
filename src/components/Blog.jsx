@@ -8,7 +8,7 @@ const Blog = () => {
     const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:6500/blogs')
+        axios.get('https://deck-serve-server.vercel.app/blogs')
             .then(res => {
                 setBlogs(res.data);
             })

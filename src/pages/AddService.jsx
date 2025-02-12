@@ -65,7 +65,7 @@ const AddService = () => {
                             <input
                                 name='title'
                                 type="text"
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 dark:text-black"
                                 placeholder="Title"
                             />
                         </div>
@@ -74,7 +74,7 @@ const AddService = () => {
                             <input
                                 name='serviceImage'
                                 type="url"
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 dark:text-black"
                                 placeholder="Image"
                             />
                         </div>
@@ -83,7 +83,7 @@ const AddService = () => {
                             <input
                                 name='company'
                                 type="text"
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 dark:text-black"
                                 placeholder="Company Name"
                             />
                         </div>
@@ -93,7 +93,7 @@ const AddService = () => {
                                 <input
                                     name='website'
                                     type="url"
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 dark:text-black"
                                     placeholder="Website"
                                 />
                             </div>
@@ -102,14 +102,14 @@ const AddService = () => {
                                 <input
                                     name='category'
                                     type="text"
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 dark:text-black"
                                     placeholder="Category"
                                 />
                             </div>
                         </div>
                         <div>
                             <label className="block text-sm font-semibold text-gray-700">Descreption</label>
-                            <textarea name="description" className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500" placeholder="Descriptiom"
+                            <textarea name="description" className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 dark:text-black" placeholder="Descriptiom"
                             ></textarea>
                         </div>
                         <div className='flex justify-between'>
@@ -118,7 +118,7 @@ const AddService = () => {
                                 <input
                                     name='price'
                                     type="number"
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 dark:text-black"
                                     placeholder="Price"
                                 />
                             </div>
@@ -129,7 +129,7 @@ const AddService = () => {
                                     type="date"
                                     defaultValue={new Date().toISOString().split('T')[0]}
                                     readOnly
-                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 bg-gray-200 cursor-not-allowed"
+                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 bg-gray-200 cursor-not-allowed dark:text-black"
                                 />
                             </div>
                         </div>

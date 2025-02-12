@@ -16,7 +16,7 @@ const Myservice = () => {
     const axiosSecure = useAxios()
 
     useEffect(() => {
-        axios.get(`http://localhost:6500/myservices/${user?.email}`, { withCredentials: true })
+        axios.get(`https://deck-serve-server.vercel.app/myservices/${user?.email}`, { withCredentials: true })
             .then(res => {
                 setServices(res.data)
             })
@@ -215,7 +215,7 @@ const Myservice = () => {
                         </div>
                     )}
                 </div> : <div>
-                        <h1 className='text-2xl font-medium text-center'>No Service Availabale</h1>
+                    <h1 className='text-2xl font-medium text-center'>No Service Availabale</h1>
                 </div>
             }
         </div>

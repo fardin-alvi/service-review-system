@@ -71,7 +71,7 @@ const Services = () => {
                         type="text"
                         placeholder="Search services..."
                         onChange={handleSearch}
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 dark:text-black"
                     />
                     <FaSearch className="absolute top-3 right-3 text-gray-500" size={20} />
                 </div>
@@ -83,7 +83,7 @@ const Services = () => {
                     >
                         <option value="">All Categories</option>
                         {categories.map((category, index) => (
-                            <option key={index} value={category}>{category}</option>
+                            <option key={index} value={category} className='dark:text-black'>{category}</option>
                         ))}
                     </select>
                 </div>
