@@ -28,18 +28,22 @@ const Myreview = () => {
     };
 
     return (
-        <div className="grid grid-cols-1 gap-y-2 my-10">
+        <div className="grid grid-cols-1 gap-y-2">
             <Helmet>
                 <title>My Review</title>
             </Helmet>
-            {reviews.map((review) => (
-                <MyreviewCard
-                    key={review._id}
-                    review={review}
-                    handleUpdated={handleUpdated}
-                    handleDeleted={handleDeleted}
-                />
-            ))}
+            {
+                reviews.length > 0 ? (
+                    reviews.map((review) => (
+                        <MyreviewCard
+                            key={review._id}
+                            review={review}
+                            handleUpdated={handleUpdated}
+                            handleDeleted={handleDeleted}
+                        />
+                    ))
+                ) : <div className='text-center text-2xl font-medium py-10'>No Review Added</div>
+            }
         </div>
     );
 };

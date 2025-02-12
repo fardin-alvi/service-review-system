@@ -80,138 +80,144 @@ const Myservice = () => {
             <Helmet>
                 <title>My Service</title>
             </Helmet>
-            <h1 className="text-2xl font-semibold mb-4">My Services</h1>
-            <div className="relative w-full mb-3 md:w-1/4">
-                <input
-                    type="text"
-                    placeholder="Search services..."
-                    onChange={(e) => setSearchService(e.target.value)}
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-                />
-                <FaSearch className="absolute top-3 right-3 text-gray-500" size={20} />
-            </div>
+            {
+                services.length > 0 ? <div>
+                    <h1 className="text-2xl font-semibold mb-4">My Services</h1>
+                    <div className="relative w-full mb-3 md:w-1/4">
+                        <input
+                            type="text"
+                            placeholder="Search services..."
+                            onChange={(e) => setSearchService(e.target.value)}
+                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        />
+                        <FaSearch className="absolute top-3 right-3 text-gray-500" size={20} />
+                    </div>
 
-            <div className="overflow-x-auto">
-                <table className="table w-full">
-                    <thead className="bg-purple-600 text-white">
-                        <tr>
-                            <th>Title</th>
-                            <th>Price</th>
-                            <th>category</th>
-                            <th>Company</th>
-                            <th>Website</th>
-                            <th>Posted Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredServices.map((service) => (
-                            <tr key={service._id}>
-                                <td>{service.title}</td>
-                                <td>${service.price}</td>
-                                <td>{service.category}</td>
-                                <td>{service.company}</td>
-                                <td>{service.website}</td>
-                                <td>{format(new Date(service.date), 'PP')}</td>
-                                <td>
-                                    <button
-                                        className="btn-sm mr-2"
-                                        onClick={() => {
-                                            setUpdateService(service);
-                                            setModal('update');
-                                        }}
-                                    >
-                                        <FaEdit className='size-5 text-green-600' />
-                                    </button>
-                                    <button
-                                        className="btn-sm"
-                                        onClick={() => {
-                                            setUpdateService(service);
-                                            setModal('delete');
-                                        }}
-                                    >
-                                        <FaTrash className='size-5 text-red-600' />
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                    <div className="overflow-x-auto">
+                        <table className="table w-full">
+                            <thead className="bg-purple-600 text-white">
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Price</th>
+                                    <th>category</th>
+                                    <th>Company</th>
+                                    <th>Website</th>
+                                    <th>Posted Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredServices.map((service) => (
+                                    <tr key={service._id}>
+                                        <td>{service.title}</td>
+                                        <td>${service.price}</td>
+                                        <td>{service.category}</td>
+                                        <td>{service.company}</td>
+                                        <td>{service.website}</td>
+                                        <td>{format(new Date(service.date), 'PP')}</td>
+                                        <td>
+                                            <button
+                                                className="btn-sm mr-2"
+                                                onClick={() => {
+                                                    setUpdateService(service);
+                                                    setModal('update');
+                                                }}
+                                            >
+                                                <FaEdit className='size-5 text-green-600' />
+                                            </button>
+                                            <button
+                                                className="btn-sm"
+                                                onClick={() => {
+                                                    setUpdateService(service);
+                                                    setModal('delete');
+                                                }}
+                                            >
+                                                <FaTrash className='size-5 text-red-600' />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
 
-            {modal === 'update' && updateService && (
-                <div className="modal modal-open">
-                    <div className="modal-box">
-                        <h3 className="font-bold text-lg text-center">Update Service</h3>
-                        <form onSubmit={handleUpdate} className="mt-4 space-y-4">
-                            <input
-                                type="url"
-                                name="photoUrl"
-                                placeholder="Service Image"
-                                className="input input-bordered w-full"
-                                required
-                            />
-                            <input
-                                type="text"
-                                name="title"
-                                placeholder="Title"
-                                className="input input-bordered w-full"
-                            />
-                            <input
-                                type="text"
-                                name="companyName"
-                                placeholder="Company Name"
-                                className="input input-bordered w-full"
-                                required
-                            />
-                            <input
-                                type="text"
-                                name="website"
-                                placeholder="Website URL"
-                                className="input input-bordered w-full"
-                                required
-                            />
-                            <textarea
-                                name="description"
-                                placeholder="Description"
-                                className="textarea textarea-bordered w-full"
-                                required
-                            ></textarea>
-                            <input
-                                type="text"
-                                name="category"
-                                placeholder="Category"
-                                className="input input-bordered w-full"
-                                required
-                            />
-                            <input
-                                type="number"
-                                name="price"
-                                placeholder="Price"
-                                className="input input-bordered w-full"
-                                required
-                            />
-                            <div className="modal-action">
-                                <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded-md">Update</button>
-                                <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded-md" onClick={() => setUpdateService(null)}>Cancel</button>
+                    {modal === 'update' && updateService && (
+                        <div className="modal modal-open">
+                            <div className="modal-box">
+                                <h3 className="font-bold text-lg text-center">Update Service</h3>
+                                <form onSubmit={handleUpdate} className="mt-4 space-y-4">
+                                    <input
+                                        type="url"
+                                        name="photoUrl"
+                                        placeholder="Service Image"
+                                        className="input input-bordered w-full"
+                                        required
+                                    />
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        placeholder="Title"
+                                        className="input input-bordered w-full"
+                                    />
+                                    <input
+                                        type="text"
+                                        name="companyName"
+                                        placeholder="Company Name"
+                                        className="input input-bordered w-full"
+                                        required
+                                    />
+                                    <input
+                                        type="text"
+                                        name="website"
+                                        placeholder="Website URL"
+                                        className="input input-bordered w-full"
+                                        required
+                                    />
+                                    <textarea
+                                        name="description"
+                                        placeholder="Description"
+                                        className="textarea textarea-bordered w-full"
+                                        required
+                                    ></textarea>
+                                    <input
+                                        type="text"
+                                        name="category"
+                                        placeholder="Category"
+                                        className="input input-bordered w-full"
+                                        required
+                                    />
+                                    <input
+                                        type="number"
+                                        name="price"
+                                        placeholder="Price"
+                                        className="input input-bordered w-full"
+                                        required
+                                    />
+                                    <div className="modal-action">
+                                        <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded-md">Update</button>
+                                        <button className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded-md" onClick={() => setUpdateService(null)}>Cancel</button>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            )}
-
-            {modal === 'delete' && updateService && (
-                <div className="modal modal-open">
-                    <div className="modal-box">
-                        <h3 className="font-bold text-lg">Are you sure you want to delete this service?</h3>
-                        <p className="py-4">{updateService.title}</p>
-                        <div className="modal-action">
-                            <button onClick={handleDelete} className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded-md"> Delete</button>
-                            <button onClick={() => setUpdateService(null)} className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded-md">Cancel</button>
                         </div>
-                    </div>
+                    )}
+
+                    {modal === 'delete' && updateService && (
+                        <div className="modal modal-open">
+                            <div className="modal-box">
+                                <h3 className="font-bold text-lg">Are you sure you want to delete this service?</h3>
+                                <p className="py-4">{updateService.title}</p>
+                                <div className="modal-action">
+                                    <button onClick={handleDelete} className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded-md"> Delete</button>
+                                    <button onClick={() => setUpdateService(null)} className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-1 px-4 rounded-md">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div> : <div>
+                        <h1 className='text-2xl font-medium text-center'>No Service Availabale</h1>
                 </div>
-            )}
+            }
         </div>
     );
 };
